@@ -1,0 +1,125 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Template {
+	
+	private $ci = NULL;
+	private $theme = NULL;
+		
+	function __construct() {
+		$this->ci = &get_instance();
+		$this->loadLanguages();
+	}
+	
+	function load($themeName='default',$params1=array()) {
+		
+		//add theme to session so that other system modules will know the choosen theme
+		$this->ci->session->set_userdata('theme', $themeName);
+		$this->theme = $themeName;
+		$params = array(
+						'theme' => $this->theme
+					);
+					
+		$params = array_merge($params, $params1);
+		
+		$this->ci->load->theme($themeName.'/main', $params);
+		
+	}
+	
+	function getHeaderTags() {
+		
+		$this->ci->load->helper('directory');
+		
+		// custom tags based on template
+		$css = directory_map(dirname(BASEPATH).'/templates/'.$this->theme.'/css');
+		$js = directory_map(dirname(BASEPATH).'/templates/'.$this->theme.'/js');
+		
+		// system tags. System necessary files
+		$systemCss = directory_map(dirname(BASEPATH).'/app_data/css');		
+		//$systemJs = directory_map(dirname(BASEPATH).'/app_data/js');
+		$systemJs = array('');
+		$appCustomJs = directory_map(dirname(BASEPATH).'/js');
+		
+		$cssTags = '';
+		$jsTags = '';
+		$allTags = '';
+		
+		if ($systemCss) {
+			foreach($systemCss as $cssFile) { 
+				if ( @is_file(dirname(BASEPATH).'/app_data/css/'.$cssFile) ) 
+					$cssTags .= '<link rel="stylesheet" href="'.base_url().'app_data/css/'.$cssFile.'" />';
+			}
+		}
+		
+		if ($systemJs) {
+			foreach($systemJs as $jsFile) {
+				if ( @is_file(dirname(BASEPATH).'/app_data/js/'.$jsFile) ) 
+					$jsTags .= '<script type="text/javascript" src="'.base_url().'app_data/js/'.$jsFile.'"></script>';
+			}
+		}
+		
+		if ($appCustomJs) {
+			foreach($appCustomJs as $jsFile) {
+				if ( @is_file(dirname(BASEPATH).'/js/'.$jsFile) ) 
+					$jsTags .= '<script type="text/javascript" src="'.base_url().'js/'.$jsFile.'"></script>';
+			}
+		}
+		
+		if ($css) {
+			foreach($css as $cssFile) {
+				if ( @is_file(dirname(BASEPATH).'/templates/'.$this->theme.'/css/'.$cssFile) ) 
+					$cssTags .= '<link rel="stylesheet" href="'.base_url().'templates/'.$this->theme.'/css/'.$cssFile.'" />';
+			}
+		}
+		
+		if ($js) {
+			foreach($js as $jsFile) {
+				if ( @is_file(dirname(BASEPATH).'/templates/'.$this->theme.'/js/'.$jsFile) ) 
+					$jsTags .= '<script type="text/javascript" src="'.base_url().'templates/'.$this->theme.'/js/'.$jsFile.'"></script>';
+			}
+		}
+		
+		
+		$allTags = $cssTags.$jsTags;
+		
+		print $allTags;
+		
+	}
+	
+	function loadLanguages() {
+		
+		global $application_folder;
+		
+		$this->ci->load->helper('directory');
+		$lang = $lang = $this->ci->config->item('language');
+		
+		$languages = directory_map(dirname(BASEPATH).'/'.$application_folder.'/language/'.$lang);
+		
+		foreach($languages as $l) {
+			
+			$exploded = explode('.', $l);
+			
+			if ($exploded[1] == 'php') {
+				
+				$langFile = str_replace('_lang', '', $exploded[0]); 
+				$this->ci->lang->load($langFile, $lang);
+				
+			}
+			
+		}
+			
+	}
+	
+	function getSliderImages(){
+		
+		$this->ci->load->helper('directory');
+		$sliderImages = directory_map(dirname(BASEPATH).'/images/slider');
+		
+		return $sliderImages;
+		
+	}
+		
+}
+
+
+/* End of file template.php */
+/* Location: ./application/libraries/template.php */
