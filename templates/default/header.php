@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?php
+getHeaderTags();
+?>
+<style type="text/css">
+#mainNav {
+	background-image: url('<?php print themePath(); ?>images/menu_r1_c3.png');
+	background-repeat: repeat-x;
+	height: 32px;
+	font-size: 13px;
+	position: relative;
+	top: -11px;
+}
+
+.selected {
+	background-image: url('<?php print themePath(); ?>images/menu_r1_c1.png');
+	background-repeat: repeat-x;
+	height: 32px;
+	font-size: 13px;
+}
+
+</style>
+<title><?php getTitle(); ?></title>
+</head>
+
+<body> 
+    <?php adminPanel(); ?>        
+	<div id="wrapper">
+    	
+    	<header id="mainHeader">
+        	<img src="<?php print themePath(); ?>images/header_plain.png" />
+            <a href="<?php print base_url(); ?>" id="site-name"><?php print SITE_TITLE; ?></a>
+            <span id="tag-line"><?php print SITE_TAGLINE; ?></span>
+        </header>
+        <nav id="mainNav">        	
+		<?php
+        foreach(getMenus() as $linkName => $link) { 
+        ?>
+            <div class="main-link<?php print ((strtolower($linkName) == currentMenu()) ? ' selected' : ''); ?>"><a href="<?php print $link; ?>"><?php print $linkName; ?></a></div>
+        <?php	 
+        }
+        ?>
+        	<br class="clear" />
+        </nav>
+        
