@@ -35,7 +35,11 @@ class Template {
 		
 		// system tags. System necessary files
 		$systemCss = directory_map(dirname(BASEPATH).'/app_data/css');
-		$systemJs = directory_map(dirname(BASEPATH).'/app_data/js');
+		//$systemJs = directory_map(dirname(BASEPATH).'/app_data/js');
+		$systemJs = array(
+		    'jquery-1.7.2.min.js',
+		    'jquery-ui-1.8.20.custom.min.js'
+		);
 		$appCustomJs = directory_map(dirname(BASEPATH).'/js');
 		
 		$cssTags = '';

@@ -24,9 +24,48 @@ class Manage extends CI_Controller {
 		$this->template->load(THEME,$data);
 	}
 	
+	function login_form_ajax_process() {
+	    if ($this->input->post('username')) {
+			
+			$this->load->library('form_validation');
+			
+			$config = array(
+               array(
+                     'field'   => 'username', 
+                     'label'   => lang('username_label'), 
+                     'rules'   => 'required'
+                  ),
+               array(
+                     'field'   => 'password', 
+                     'label'   => lang('password_label'), 
+                     'rules'   => 'required'
+                  )
+            );
+
+			$this->form_validation->set_rules($config);
+			$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+			
+			if ($this->form_validation->run() == FALSE)
+			{
+				print validation_errors();
+			}
+			else
+			{
+				$this->load->model('account_handler');
+				
+				if ($this->account_handler->login($this->input->post('username'), $this->input->post('password'))) {
+					print 'success';
+				} else {
+					print '<div class="error">'.lang('invalid_login_label').'</div>';	
+				}
+			}
+				
+		}
+	}
+	
 	function login_form_ajax() {
 		
-		if ($this->input->post()) {
+		if ($this->input->post('username')) {
 			
 			$this->load->library('form_validation');
 			

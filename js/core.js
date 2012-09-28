@@ -19,7 +19,7 @@ $(function() {
 					beforeSend: function() {
 						$('.form-element').attr('disabled', true);
 					},
-					success: function(data) {
+					success: function(data) { 
 						if (data == 'success') {
 							window.location = site_url;
 						} else {
@@ -57,7 +57,7 @@ var Manage = {
 		
 		$.get(url, function(data) {
 			
-				new Messi(data, { title: "Login", titleClass: "custom1", modal: true, width: 340 });
+				new Messi(data, { title: "Login", titleClass: "custom1", modal: true, width: 410 });
 				$('.autofocus').focus();
 				
 			});

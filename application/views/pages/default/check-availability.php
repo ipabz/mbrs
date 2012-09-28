@@ -1,5 +1,5 @@
 <br />
-<img src="<?php print base_url(); ?>images/ads.PNG" />
+<img src="<?php print base_url(); ?>images/ads.png" />
 <div class="sidebar-title">
 <?php
 print lang('check_availability_label');

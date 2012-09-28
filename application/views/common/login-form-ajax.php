@@ -1,4 +1,4 @@
-<?php print form_open(current_url(), 'id="login-form"'); ?>
+<?php print form_open('manage/login_form_ajax_process', 'id="login-form"'); ?>
 <div id="error-msg-container">
 </div>
 <table border="0" width="100%" align="center">
