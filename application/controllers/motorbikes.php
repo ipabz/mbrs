@@ -88,17 +88,9 @@ class Motorbikes extends CI_Controller {
 			/* This is only for the autocompletion */
 			$crud = new grocery_CRUD();
          
-			//$crud->set_theme('datatables');
 			$crud->set_table(MODEL_TABLE);
-			$crud->set_subject('Motor Bike Model');
-			//$crud->set_relation('model_id', MODEL_TABLE,'name');
-			//$crud->display_as('model_id', 'Model Name')
-				//  ->display_as('plate_number', 'Plate Number');
+			$crud->set_subject('Motor Bike Model');			
 			$crud->required_fields('name', 'price');
-			//$crud->add_fields('model_id', 'description', 'price', 'plate_number');
-			//$crud->edit_fields('model_id', 'description', 'price', 'plate_number');
-			//$crud->columns('plate_number', 'model_id','description','price', 'date_added');
-			//$crud->callback_insert( array( $this, '_callback_add_motorbike'));
 			$output = $crud->render();
 			
 			$data = array(

@@ -8,7 +8,7 @@
 	$lang['end_date_label'] = 'End date';
 	$lang['motorbike_label'] = 'MotorBikes';
 	$lang['reports_label'] = 'Reports';
-	$lang['account_label'] = 'Account';
+	$lang['account_label'] = 'Accounts';
 	$lang['logout_label'] = 'Logout';
 	$lang['username_label'] = 'Username';
 	$lang['password_label'] = 'Password';
@@ -25,4 +25,5 @@
 	$lang['description_label'] = 'Description';
 	$lang['price_label'] = 'Price';
 	$lang['actions_label'] = 'Actions';
+	$lang['edit_account_label'] = 'Edit Account';
 ?>

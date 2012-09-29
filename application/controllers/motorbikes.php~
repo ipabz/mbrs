@@ -94,7 +94,7 @@ class Motorbikes extends CI_Controller {
 			//$crud->set_relation('model_id', MODEL_TABLE,'name');
 			//$crud->display_as('model_id', 'Model Name')
 				//  ->display_as('plate_number', 'Plate Number');
-			//$crud->required_fields('plate_number', 'price', 'model_id');
+			$crud->required_fields('name', 'price');
 			//$crud->add_fields('model_id', 'description', 'price', 'plate_number');
 			//$crud->edit_fields('model_id', 'description', 'price', 'plate_number');
 			//$crud->columns('plate_number', 'model_id','description','price', 'date_added');
