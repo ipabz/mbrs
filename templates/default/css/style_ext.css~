@@ -176,7 +176,6 @@ hr {
 .logout-container {
 	float: right;
 	margin-top: 60px;
-	margin-left:  40px;
 }
 
 .form_input {
@@ -271,4 +270,8 @@ tr.hover:hover {
 	top:1px;
 	color: #fff !important;
 	
+}
+
+.selected-admin-menu {
+	color: orange;	
 }
