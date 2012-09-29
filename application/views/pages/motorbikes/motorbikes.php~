@@ -1,0 +1,20 @@
+
+<div id="mainContent">
+	<br />
+    <h3 class="page-title"><?php print lang('motor_bikes_label');  ?></h3>
+    
+    <?php  $this->load->view('pages/motorbikes/options'); ?>
+    
+    <div class="page-content">
+        <?php print $output->output; ?>
+    </div>   
+    
+</div>
+
+<?php 
+foreach($output->css_files as $file): ?>
+	<link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
+<?php endforeach; ?>
+
+<script src="http://localhost/motorbike_rental/assets/grocery_crud/themes/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="http://localhost/motorbike_rental/assets/grocery_crud/themes/datatables/js/datatables.js"></script>

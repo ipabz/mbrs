@@ -25,7 +25,7 @@ class Template {
 		
 	}
 	
-	function getHeaderTags() {
+	function getHeaderTags($loadJQuery=TRUE) {
 		
 		$this->ci->load->helper('directory');
 		
@@ -40,6 +40,11 @@ class Template {
 		    'jquery-1.7.2.min.js',
 		    'jquery-ui-1.8.20.custom.min.js'
 		);
+
+		if (! $loadJQuery) {
+			$systemJs = array();
+		}		
+		
 		$appCustomJs = directory_map(dirname(BASEPATH).'/js');
 		
 		$cssTags = '';

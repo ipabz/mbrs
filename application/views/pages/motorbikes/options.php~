@@ -1,0 +1,8 @@
+<div id="wide-area">
+    <div class="text-right wide">
+        <a id="motorbike-models" class="button" href=""><?php print lang('new_motorbike_label'); ?></a>    
+	    <a id="motorbike-models" class="button" href=""><?php print lang('model_label'); ?></a>
+	    <input type="text" name="search-motorbike" placeholder="Search for motorbikes..." class="search-field" size="40" />
+    </div>
+    <hr />
+</div>
