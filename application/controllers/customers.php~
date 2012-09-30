@@ -37,6 +37,7 @@ class Customers extends CI_Controller {
 			$crud->required_fields('first_name', 'last_name', 'current_address', 'email_address', 'contact_number');
 			$crud->add_fields('first_name', 'last_name', 'current_address', 'email_address', 'contact_number');
 			$crud->edit_fields('first_name', 'last_name', 'current_address', 'email_address', 'contact_number');
+			$crud->callback_insert(array($this, '_callback_add_date'));
 			$output = $crud->render();
 			
 			$data = array(

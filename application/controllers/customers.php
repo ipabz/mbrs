@@ -52,6 +52,10 @@ class Customers extends CI_Controller {
 			
 	}
 	
+	/**
+	 * Function automatically called when adding a new customer.
+	 * It adds a date and time of the action
+	 */
 	function _callback_add_date($postValues,$temp='') {
 		
 		$postValues['date_registered'] = @date('Y-m-d H:i:s');

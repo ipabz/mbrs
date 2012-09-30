@@ -46,7 +46,7 @@ define('THEME', 'default');
 define('ADMIN_TABLE', 'admin');
 define('MODEL_TABLE', 'model');
 define('MOTORBIKE_TABLE', 'motorbike');
-define('CUSTOMERS', 'customers')
+define('CUSTOMER_TABLE', 'customer');
 
 
 /* End of file constants.php */
