@@ -48,6 +48,7 @@ define('MODEL_TABLE', 'model');
 define('MOTORBIKE_TABLE', 'motorbike');
 define('CUSTOMER_TABLE', 'customer');
 define('RESERVATION_TABLE', 'reservation');
+define('RENTAL_TABLE', 'rental');
 
 
 /* End of file constants.php */

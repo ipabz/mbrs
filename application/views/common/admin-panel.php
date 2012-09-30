@@ -4,7 +4,7 @@
         &nbsp;<img src="<?php print base_url(); ?>images/icon-48-user.png" width="25" align="absmiddle" />
         &nbsp;
         <span>
-        	<a <?php print ((currentMenu() == 'rentals') ? 'style="color: orange; font-weight: bold"' : ''); ?> href=""><?php print lang('rentals_label'); ?></a>
+        	<a <?php print ((currentMenu() == 'rentals') ? 'style="color: orange; font-weight: bold"' : ''); ?> href="<?php print site_url('rentals/rentals_list'); ?>"><?php print lang('rentals_label'); ?></a>
         	<a <?php print ((currentMenu() == 'reservations') ? 'style="color: orange; font-weight: bold"' : ''); ?> href="<?php print site_url('reservations/reservations_list'); ?>"><?php print lang('reservations_label'); ?></a>
         	<a <?php print ((currentMenu() == 'customers') ? 'style="color: orange; font-weight: bold"' : ''); ?> href="<?php print site_url('customers/customers_list'); ?>"><?php print lang('customers_label'); ?></a>
             <a <?php print ((currentMenu() == 'motorbikes') ? 'style="color: orange; font-weight: bold"' : ''); ?> href="<?php print site_url('motorbikes/list_motorbikes'); ?>"><?php print lang('motorbike_label'); ?></a>
