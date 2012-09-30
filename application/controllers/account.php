@@ -40,7 +40,7 @@ class Account extends CI_Controller {
          
 			$crud->set_table(ADMIN_TABLE);
 			$crud->set_subject('Account');			
-			//$crud->required_fields('name', 'price');
+			$crud->required_fields('first_name', 'last_name', 'username', 'password');
 			$crud->columns('first_name', 'last_name', 'username', 'date_created');
 			$crud->add_fields('first_name', 'last_name', 'username', 'password');
 			$crud->edit_fields('first_name', 'last_name', 'username', 'password');

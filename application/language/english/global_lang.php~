@@ -25,4 +25,5 @@
 	$lang['description_label'] = 'Description';
 	$lang['price_label'] = 'Price';
 	$lang['actions_label'] = 'Actions';
+	$lang['edit_account_label'] = 'Edit Account';
 ?>
