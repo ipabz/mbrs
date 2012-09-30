@@ -8,7 +8,7 @@
         	<a <?php print ((currentMenu() == 'reservations') ? 'style="color: orange; font-weight: bold"' : ''); ?> href="<?php print site_url('reservations/reservations_list'); ?>"><?php print lang('reservations_label'); ?></a>
         	<a <?php print ((currentMenu() == 'customers') ? 'style="color: orange; font-weight: bold"' : ''); ?> href="<?php print site_url('customers/customers_list'); ?>"><?php print lang('customers_label'); ?></a>
             <a <?php print ((currentMenu() == 'motorbikes') ? 'style="color: orange; font-weight: bold"' : ''); ?> href="<?php print site_url('motorbikes/list_motorbikes'); ?>"><?php print lang('motorbike_label'); ?></a>
-            <a href=""><?php print lang('reports_label'); ?></a>
+            <a <?php print ((currentMenu() == 'reports') ? 'style="color: orange; font-weight: bold"' : ''); ?> href="<?php print site_url('reports/rentals_list'); ?>"><?php print lang('reports_label'); ?></a>
             <?php if($this->session->userdata('admin_id') == '1') { ?>
             <a <?php print ((currentMenu() == 'account') ? 'style="color: orange; font-weight: bold"' : ''); ?> href="<?php print site_url('account/account_list'); ?>"><?php print lang('account_label'); ?></a>
             <?php } else { ?>
