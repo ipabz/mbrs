@@ -84,6 +84,10 @@ body {
 	width: 600px;
 }
 
+#left-container section {
+    padding: 0px 15px 0px 15px;
+}
+
 #right-container {
 	float: right;
 	width: 310px;	

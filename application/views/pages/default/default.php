@@ -46,8 +46,9 @@
     </script>
     <br />
     <div id="left-container">
+        <h3 class="page-title">Welcome to <?php print SITE_TITLE; ?> Dumaguete!</h3>
     	<section>
-            <h3 class="page-title">Welcome to <?php print SITE_TITLE; ?> Dumaguete!</h3>
+            
             <p>
                 Looking for a scooter to rent, motorbike rental, motorcycle for hire in Dumaguete city? We simply provide you with motorbikes or scooter you need for touring Dumaguete City and all other neighboring cities.
             </p>
@@ -65,13 +66,18 @@
             </p>
         </section>
         <br />
+        <h4 class="page-title">New Motorbikes</h4>
         <section>
-        	<h4 class="page-title">New Motorbikes</h4>
+        	
  
             <div class="new-motorbikes-container">
-            	<a href=""><img src="<?php print base_url(); ?>images/bike1.png" width="100" /></a>
-                <a href=""><img src="<?php print base_url(); ?>images/bike2.png" width="100" /></a>
-                <a href=""><img src="<?php print base_url(); ?>images/bike3.png" width="100" /></a>
+                <?php
+                foreach($newModels as $m) {
+                ?>
+                <a href=""><img src="<?php print base_url(); ?>assets/uploads/photos/<?php print $m['photo'] ?>" width="100" /></a>
+                <?php
+                }
+                ?>
             </div>
         </section>
         <br /><br />&nbsp;

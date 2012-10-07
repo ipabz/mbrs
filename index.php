@@ -1,5 +1,8 @@
 <?php
 
+ini_set('upload_max_filesize', '10M');
+ini_set('post_max_size', '10M');
+
 /*
  *---------------------------------------------------------------
  * APPLICATION ENVIRONMENT
@@ -190,6 +193,11 @@ if (defined('ENVIRONMENT'))
 
 		define('APPPATH', BASEPATH.$application_folder.'/');
 	}
+    
+    if( !ini_get('date.timezone') )
+	{
+		date_default_timezone_set('America/New_York');
+	} 
 
 /*
  * --------------------------------------------------------------------

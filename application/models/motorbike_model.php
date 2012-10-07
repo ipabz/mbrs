@@ -18,6 +18,17 @@ class Motorbike_model extends CI_Model {
 		return $query->result_array();
 		
 	}
+    
+    
+    function newMotorBikes($limit=5) {
+        
+        $this->db->limit($limit);
+        $this->db->order_by('model_id', 'DESC');
+        $query = $this->db->get(MODEL_TABLE);
+        
+        return $query->result_array();
+        
+    }
 		
 }
 

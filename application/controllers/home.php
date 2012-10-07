@@ -6,9 +6,9 @@ class Home extends CI_Controller {
 	 * Index Page for this controller.
 	 *
 	 * Maps to the following URL
-	 * 		http://example.com/index.php/welcome
+	 * 		http://example.com/index.php/home
 	 *	- or -  
-	 * 		http://example.com/index.php/welcome/index
+	 * 		http://example.com/index.php/home/index
 	 *	- or -
 	 * Since this controller is set as the default controller in 
 	 * config/routes.php, it's displayed at http://example.com/
@@ -19,7 +19,11 @@ class Home extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data = array();
+        $this->load->model('motorbike_model');
+        
+		$data = array(
+            'newModels' => $this->motorbike_model->newMotorBikes()
+        );
 		
 		$this->template->load(THEME,$data);
 	}

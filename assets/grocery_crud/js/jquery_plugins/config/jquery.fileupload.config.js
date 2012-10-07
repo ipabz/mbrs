@@ -86,7 +86,7 @@ $(function(){
 				}
 	        },
 	        autoUpload: true,
-	        error: function()
+	        error: function(e)
 	        {
 	        	alert(error_on_uploading);
 	        	show_upload_button(unique_id, uploader_element);

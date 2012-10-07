@@ -16,7 +16,7 @@ class Motorbikes extends CI_Controller {
 	public function index()
 	{
 	    
-		//redirect('motorbikes/motorbikes');
+		redirect('motorbikes/list_motorbikes');
 		
 	}
 	
@@ -25,8 +25,6 @@ class Motorbikes extends CI_Controller {
 	 * It loads the view: pages/motorbikes/motorbikes
 	 */
 	function list_motorbikes() {
-		
-		$output = '';
 	    
 	    try{
 			/* This is only for the autocompletion */
@@ -76,13 +74,11 @@ class Motorbikes extends CI_Controller {
 	 */
 	function models() {
 		
-		$models = array('motorbike_model');
-		$this->load->model($models);
+		$cimodels = array('motorbike_model');
+		$this->load->model($cimodels);
 		$this->load->helper('text');
 		
 		$models = $this->motorbike_model->getModels(0,50);
-		
-		$output = '';
 	    
 	    try{
 			/* This is only for the autocompletion */
@@ -91,6 +87,7 @@ class Motorbikes extends CI_Controller {
 			$crud->set_table(MODEL_TABLE);
 			$crud->set_subject('Motor Bike Model');			
 			$crud->required_fields('name', 'price');
+			$crud->set_field_upload('photo', 'assets/uploads/photos');
 			$output = $crud->render();
 			
 			$data = array(
