@@ -7,8 +7,26 @@ $(function() {
 	$('#check-availability-form').live('submit', function(e) {
 			
 			e.preventDefault();
+            
+            $(this).ajaxSubmit({
+                success: function(data) {
+                    new Messi(data, {title: "Available Motorbikes", titleClass: "custom1"});
+                }
+            });
 			
 		});
+        
+    $('.bike-option').live('submit', function(e) {
+        
+        e.preventDefault();
+        
+        $(this).ajaxSubmit({
+            success:function(data) {
+                new Messi(data, {title: "Customer Details", titleClass: "custom1", modal: true, width: 350});
+            }
+        });
+        
+    });
 		
 	$('#login-form').live('submit', function(e) {
 			

@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 30, 2012 at 10:26 AM
--- Server version: 5.5.27
+-- Generation Time: Oct 15, 2012 at 07:28 AM
+-- Server version: 5.5.28
 -- PHP Version: 5.4.7
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -105,6 +105,7 @@ CREATE TABLE IF NOT EXISTS `motorbike` (
   `description` text,
   `price` double(10,2) NOT NULL,
   `plate_number` varchar(255) NOT NULL,
+  `status` enum('available','unavailable') NOT NULL DEFAULT 'available',
   `date_added` datetime NOT NULL,
   PRIMARY KEY (`motorbike_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
@@ -113,11 +114,11 @@ CREATE TABLE IF NOT EXISTS `motorbike` (
 -- Dumping data for table `motorbike`
 --
 
-INSERT INTO `motorbike` (`motorbike_id`, `model_id`, `description`, `price`, `plate_number`, `date_added`) VALUES
-(1, 1, 'sample description of this Honda Wave 100 motorbike', 350.00, '1732 MC', '2012-09-29 00:00:00'),
-(3, 2, '<p>salk s lskdj </p>', 600.00, '1230 MC', '0000-00-00 00:00:00'),
-(4, 1, '<p>sdfadsf</p>', 350.00, '3333 YC', '2012-09-29 06:36:13'),
-(5, 1, '<p>sasdf</p>', 350.00, '2939 MC', '2012-09-29 06:36:55');
+INSERT INTO `motorbike` (`motorbike_id`, `model_id`, `description`, `price`, `plate_number`, `status`, `date_added`) VALUES
+(1, 1, 'sample description of this Honda Wave 100 motorbike', 350.00, '1732 MC', 'available', '2012-09-29 00:00:00'),
+(3, 2, '<p>salk s lskdj </p>', 600.00, '1230 MC', 'available', '0000-00-00 00:00:00'),
+(4, 1, '<p>sdfadsf</p>', 350.00, '3333 YC', 'available', '2012-09-29 06:36:13'),
+(5, 1, '<p>sasdf</p>', 350.00, '2939 MC', 'available', '2012-09-29 06:36:55');
 
 -- --------------------------------------------------------
 
@@ -154,19 +155,12 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   `reservation_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `customer_id` int(11) NOT NULL,
   `motorbike_id` int(11) NOT NULL,
-  `start_date` datetime NOT NULL,
-  `end_date` datetime NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
   `price_per_day` double(10,2) DEFAULT NULL,
   `date_reserved` datetime NOT NULL,
   PRIMARY KEY (`reservation_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `reservation`
---
-
-INSERT INTO `reservation` (`reservation_id`, `customer_id`, `motorbike_id`, `start_date`, `end_date`, `price_per_day`, `date_reserved`) VALUES
-(1, 1, 1, '2012-10-02 06:00:00', '2012-10-05 11:00:00', 400.00, '2012-09-30 15:15:00');
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 

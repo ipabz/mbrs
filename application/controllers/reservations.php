@@ -98,7 +98,13 @@ class Reservations extends CI_Controller {
 
 			if ( $startDate != '' && $endDate != '' ) {
 
-				
+				$this->load->model('motorbike_model');
+                
+                $query = $this->motorbike_model->checkAvailability($startDate,$endDate);
+                
+                $data = array('query'=> $query, 'startDate'=>$startDate,'endDate'=>$endDate);
+                
+                $this->load->view('pages/default/available-bikes', $data);
 				
 			}
 			
@@ -110,6 +116,56 @@ class Reservations extends CI_Controller {
 		}
 
 	}
+    
+    function customer_form() {
+        
+        if ($this->input->post()) {
+            
+            $this->load->view('pages/default/customer-form', $this->input->post());
+            
+        }
+        
+    }
+    
+    function reserve() {
+        
+        if ($this->input->post()) {
+            
+            $this->load->model('motorbike_model');
+            
+            $customer = array(
+                'first_name' => $this->input->post('fname'),
+                'last_name' => $this->input->post('lname'),
+                'current_address' => $this->input->post('current-address'),
+                'email_address' => $this->input->post('email-address'),
+                'contact_number' => $this->input->post('contact-number'),
+                'date_registered' => @date('Y-m-d H:i:s')
+            );
+            
+            $customerID = $this->motorbike_model->createCustomer($customer);
+            
+            $reservation = array(
+                'customer_id' => $customerID,
+                'motorbike_id' => $this->input->post('motorbikeID'),
+                'start_date' => @date('Y-m-d', @strtotime($this->input->post('startDate'))),
+                'end_date' => @date('Y-m-d', @strtotime($this->input->post('endDate'))),
+                'price_per_day' => $this->input->post('price'),
+                'date_reserved' => @date('Y-m-d H:i:s')
+            );
+                
+            $this->motorbike_model->reserve($reservation);
+            ?>
+            <script>
+                alert("Reservation successful!");
+            </script>
+            <?php
+            
+        }
+        
+        redirect('');
+        
+    }
+    
 }
 
 /* End of file reservations.php */

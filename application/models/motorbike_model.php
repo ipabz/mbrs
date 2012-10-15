@@ -32,16 +32,92 @@ class Motorbike_model extends CI_Model {
 
 	function checkAvailability($startDate,$endDate) {
 		
+        $startDate = @date('Y-m-d', @strtotime($startDate));
+        $endDate = @date('Y-m-d', @strtotime($endDate));
+        
 		$sql = "
 			SELECT
-				rs.model_id
+				rs.motorbike_id
 			FROM
 				".RESERVATION_TABLE." AS rs
 			WHERE
-				rs.
+				( rs.start_date <= DATE_FORMAT('$startDate','%Y-%m-%d') AND rs.end_date >= DATE_FORMAT('$startDate','%Y-%m-%d') ) OR
+                ( rs.start_date <= DATE_FORMAT('$endDate','%Y-%m-%d') AND rs.end_date <= DATE_FORMAT('$endDate','%Y-%m-%d') )
 		";
+       
+        $query = $this->db->query($sql);
+        
+        $motorbikes = "";
+        
+        foreach ( $query->result() as $row ) {
+            if ($motorbikes == "") {
+                $motorbikes .= MOTORBIKE_TABLE.".motorbike_id <> " . $row->motorbike_id;
+            } else {
+                $motorbikes .= " OR ".MOTORBIKE_TABLE.".motorbike_id <> " . $row->motorbike_id;
+            }
+        }
+        
+        $sql = "
+			SELECT
+				rs.motorbike_id
+			FROM
+				".RENTAL_TABLE." AS rs
+			WHERE
+				( rs.start_date <= DATE_FORMAT('$startDate','%Y-%m-%d') AND rs.end_date >= DATE_FORMAT('$startDate','%Y-%m-%d') ) OR
+                ( rs.start_date <= DATE_FORMAT('$endDate','%Y-%m-%d') AND rs.end_date <= DATE_FORMAT('$endDate','%Y-%m-%d') ) AND
+                rs.status = 'current'
+		";
+        
+        $query = $this->db->query($sql);
+        
+        foreach ( $query->result() as $row ) {
+            if ($motorbikes == "") {
+                $motorbikes .= MOTORBIKE_TABLE.".motorbike_id <> " . $row->motorbike_id;
+            } else {
+                $motorbikes .= " OR ".MOTORBIKE_TABLE.".motorbike_id <> " . $row->motorbike_id;
+            }
+        }
+        
+        
+        
+        $sql = "
+            SELECT
+                ".MOTORBIKE_TABLE.".motorbike_id,
+                ".MODEL_TABLE.".*
+            FROM
+                ".MOTORBIKE_TABLE.",
+                ".MODEL_TABLE."
+            WHERE
+                ".MODEL_TABLE.".model_id = ".MOTORBIKE_TABLE.".model_id
+        ";
+        
+        if ( $motorbikes != '' ) {
+            $sql .= " AND ( $motorbikes )";
+        }
+        
+        //$sql .= " GROUP BY ".MODEL_TABLE.".model_id";
+        
+     
+        
+        $query = $this->db->query($sql);
+        
+        return $query;
 
 	}
+    
+    function createCustomer($array) {
+        
+        $this->db->insert(CUSTOMER_TABLE, $array);
+        
+        return $this->db->insert_id();
+        
+    }
+    
+    function reserve($array) {
+        
+        $this->db->insert(RESERVATION_TABLE, $array);
+        
+    }
 		
 }
 
