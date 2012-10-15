@@ -38,7 +38,7 @@ class Rentals extends CI_Controller {
 			$crud->display_as('motorbike_id', 'Motor Bike')
 				  ->display_as('customer_id', 'Customer');
 			$crud->unset_delete();
-			$crud->where('status', 'current');
+			$crud->where(RENTAL_TABLE.'.status', 'current');
 			$crud->required_fields('customer_id', 'motorbike_id', 'start_date', 'end_date', 'date_rented', 'price_per_day');
 			
 			$output = $crud->render();

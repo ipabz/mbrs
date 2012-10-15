@@ -6,7 +6,7 @@ print lang('check_availability_label');
 ?>
 </div>
 <hr />
-<?php print form_open('reservation/check_availability', 'id="check-availability-form"'); ?>
+<?php print form_open('reservations/check_availability', 'id="check-availability-form"'); ?>
 <table border="0" width="90%" class="mytable center">
 
     <tr>
@@ -16,7 +16,7 @@ print lang('check_availability_label');
 		?>
         </td>
         <td>
-        	<input type="text" name="start-date" class="date-field date" />
+        	<input type="text" name="start-date" required="required" class="date-field date" />
         </td>
     </tr>
     
@@ -27,7 +27,7 @@ print lang('check_availability_label');
 		?>
         </td>
         <td>
-        	<input type="text" name="end-date" class="date-field date" />
+        	<input type="text" name="end-date" required="required" class="date-field date" />
         </td>
     </tr>
     

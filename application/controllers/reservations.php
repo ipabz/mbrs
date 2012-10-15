@@ -38,6 +38,8 @@ class Reservations extends CI_Controller {
 			$crud->display_as('motorbike_id', 'Motor Bike')
 				  ->display_as('customer_id', 'Customer');
 			$crud->required_fields('customer_id', 'motorbike_id', 'start_date', 'end_date', 'date_reserved');
+			$crud->callback_insert(array($this, '_changedBikeStatus'));
+			$crud->callback_delete(array($this, '_revertStat'));
 			
 			$output = $crud->render();
 			
@@ -53,6 +55,61 @@ class Reservations extends CI_Controller {
 		
 	}
 	
+
+	function _revertStat($primary) {
+
+		$query = $this->db->get_where(RESERVATION_TABLE, array('reservation_id'=>$primary));
+		$row = $query->row_array();	
+
+		$data = array(
+			'status' => 'available'
+		);
+		
+		$this->db->where('motorbike_id', $row['motorbike_id']);
+		$this->db->update(MOTORBIKE_TABLE, $data);
+
+		return $this->db->delete(RESERVATION_TABLE, array('reservation_id'=>$primary));
+
+	}
+
+	function _changedBikeStatus($post,$temp="") {
+		
+		$data = array(
+			'status' => 'unavailable'
+		);
+		
+		$this->db->where('motorbike_id', $post['motorbike_id']);
+		$this->db->update(MOTORBIKE_TABLE, $data);
+		
+		$post['start_date'] = @date('Y-m-d', @strtotime($post['start_date']));
+		$post['end_date'] = @date('Y-m-d', @strtotime($post['end_date']));
+		$post['date_reserved'] = @date('Y-m-d H:i:s', @strtotime($post['date_reserved']));	
+		
+		return $this->db->insert(RESERVATION_TABLE, $post);
+
+	}
+
+	function check_availability() {
+		
+		if ( $this->input->post() ) {
+			
+			$startDate = $this->input->post('start-date');
+			$endDate = $this->input->post('end-date');
+
+			if ( $startDate != '' && $endDate != '' ) {
+
+				
+				
+			}
+			
+
+		} else {
+			
+			print 'Please specify a start date and an end date.';
+
+		}
+
+	}
 }
 
 /* End of file reservations.php */

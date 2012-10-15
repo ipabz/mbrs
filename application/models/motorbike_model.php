@@ -29,6 +29,19 @@ class Motorbike_model extends CI_Model {
         return $query->result_array();
         
     }
+
+	function checkAvailability($startDate,$endDate) {
+		
+		$sql = "
+			SELECT
+				rs.model_id
+			FROM
+				".RESERVATION_TABLE." AS rs
+			WHERE
+				rs.
+		";
+
+	}
 		
 }
 
