@@ -19,7 +19,11 @@ class Manage extends CI_Controller {
 	 */
 	public function index()
 	{
-		$data = array();
+		$this->load->model('motorbike_model');	
+			$data = array(
+            'newModels' => $this->motorbike_model->newMotorBikes()
+        );
+	
 		
 		$this->template->load(THEME,$data);
 	}
