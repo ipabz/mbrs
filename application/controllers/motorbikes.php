@@ -103,6 +103,21 @@ class Motorbikes extends CI_Controller {
 			
 	}
 	
+	/**
+	 * Searches for motorbikes base on query
+	 * 
+	 * @access public
+	 * @param void
+	 * @return void
+	 */
+	function search() {
+		
+		$query = $this->input->post('query');
+		
+		
+		
+	}
+	
 }
 
 /* End of file motorbikes.php */

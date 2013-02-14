@@ -1,4 +1,16 @@
 <br />
+<div>
+	<?php print form_open(''); ?>
+	<fieldset class="border">
+		<legend>Search</legend>
+		<div class="center">
+			<input type="search" name="query" required="required" />
+			<input type="submit" value="Find" />
+		</div>
+	</fieldset>
+	<?php print form_close(); ?>
+</div>
+<br />
 <img src="<?php print base_url(); ?>images/ads.png" />
 <div class="sidebar-title">
 <?php

@@ -275,3 +275,11 @@ tr.hover:hover {
 	color: #fff !important;
 	
 }
+
+.border {
+	border: 1px solid #ccc;
+}
+
+.center {
+	text-align: center;
+}
